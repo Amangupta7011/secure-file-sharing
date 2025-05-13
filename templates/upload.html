@@ -1,0 +1,16 @@
+ 
+{% extends "base.html" %}
+
+{% block content %}
+<div class="form-container">
+    <h2>Upload File</h2>
+    <p>Allowed formats: .pptx, .docx, .xlsx</p>
+    
+    <form method="POST" enctype="multipart/form-data">
+        <div class="upload-area">
+            <input type="file" id="file" name="file" accept=".pptx,.docx,.xlsx" required>
+        </div>
+        <button type="submit">Upload File</button>
+    </form>
+</div>
+{% endblock %}

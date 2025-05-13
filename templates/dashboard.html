@@ -1,0 +1,41 @@
+ 
+{% extends "base.html" %}
+
+{% block content %}
+<div class="dashboard">
+    <aside class="sidebar">
+        <h3>Menu</h3>
+        <ul class="sidebar-nav">
+            <li><a href="{{ url_for('list_files') }}" class="active">My Files</a></li>
+            {% if current_user.user_type == 'ops' %}
+            <li><a href="{{ url_for('upload_file') }}">Upload Files</a></li>
+            {% endif %}
+        </ul>
+    </aside>
+
+    <main class="main-content">
+        {% block dashboard_content %}
+        <h2>Welcome, {{ current_user.email }}</h2>
+        <p>User Type: {{ current_user.user_type|capitalize }}</p>
+        {% endblock %}
+    </main>
+    <script>
+        // Scroll Reveal
+const revealElements = document.querySelectorAll('.reveal-animation');
+
+const revealOnScroll = () => {
+  revealElements.forEach(element => {
+    const elementTop = element.getBoundingClientRect().top;
+    const windowHeight = window.innerHeight;
+    
+    if(elementTop < windowHeight * 0.85) {
+      element.classList.add('visible');
+    }
+  });
+}
+
+window.addEventListener('scroll', revealOnScroll);
+revealOnScroll(); // Initial check
+    </script>
+</div>
+{% endblock %}

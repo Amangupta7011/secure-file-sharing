@@ -1,0 +1,29 @@
+ 
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Available Files</h2>
+
+{% if files %}
+<div class="file-list">
+    {% for file in files %}
+    <div class="file-item">
+        <div class="file-info">
+            <div class="file-name">{{ file.original_name }}</div>
+            <div class="file-meta">
+                Uploaded on {{ file.uploaded_at.strftime('%Y-%m-%d') }}
+            </div>
+        </div>
+        <div class="file-actions">
+            <a href="{{ url_for('generate_download_link', file_id=file.file_id) }}" 
+               class="btn">
+               Download
+            </a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<p>No files available for download.</p>
+{% endif %}
+{% endblock %}
